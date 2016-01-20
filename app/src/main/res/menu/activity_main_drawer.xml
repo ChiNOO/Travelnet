@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/action_hotels"
+            android:title="@string/menu_title_hotels"/>
+        <item
+            android:id="@+id/action_travels"
+            android:title="@string/menu_title_travels"/>
+        <item
+            android:id="@+id/action_attractions"
+            android:title="@string/menu_title_attractions"/>
+        <item
+            android:id="@+id/action_flights"
+            android:title="@string/menu_title_flights"/>
+        <item
+            android:id="@+id/action_houses"
+            android:title="@string/menu_title_houses"/>
+    </group>
+
+    <item android:title="">
+        <menu>
+            <item
+                android:id="@+id/action_settings"
+                android:title="@string/menu_title_settings"/>
+
+        </menu>
+    </item>
+
+</menu>

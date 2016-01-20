@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TravelNet" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:colorBackground">@color/background_material_dark</item>
+        <item name="android:colorForeground">@color/foreground_material_dark</item>
+        <item name="android:navigationBarColor">@color/black</item>
+    </style>
+</resources>

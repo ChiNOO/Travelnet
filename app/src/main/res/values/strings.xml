@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Travelnet</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="menu_title_hotels">Hoteles</string>
+    <string name="menu_title_travels">Traslados</string>
+    <string name="menu_title_attractions">Atracciones</string>
+    <string name="menu_title_flights">Vuelos</string>
+    <string name="menu_title_houses">Casas</string>
+    <string name="menu_title_settings">Configuración</string>
+    <string name="menu_title_main">INI</string>
+    <string name="toolbar_hotels_location">Ubicación</string>
+    <string name="toolbar_hotels_dateIni">Desde</string>
+    <string name="toolbar_hotels_dateEnd">Hasta</string>
+    <string name="toolbar_hotels_rooms">Habitaciones: </string>
+    <string name="toolbar_hotels_NoRooms">1</string>
+    <string name="Done">Ok</string>
+    <string name="Single">Single</string>
+    <string name="Multi">Multi</string>
+    <string name="Range">Range</string>
+    <string name="DisplayOnly">DisplayOnly</string>
+    <string name="Dialog">Dialog</string>
+    <string name="Customized">Customized</string>
+    <string name="Decorator">Decorator</string>
+    <string name="RTL">RTL</string>
+</resources>
