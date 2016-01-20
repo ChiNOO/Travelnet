@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="dflabslib-1.0.28">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/io.dflabs/dflabslib/1.0.28/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/io.dflabs/dflabslib/1.0.28/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.dflabs/dflabslib/1.0.28/98b4041f47c0b1448a38e8ee9b7e4a685b349f67/dflabslib-1.0.28-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

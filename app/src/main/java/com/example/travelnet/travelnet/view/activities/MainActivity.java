@@ -6,8 +6,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.widget.Toolbar;
+import android.widget.FrameLayout;
 
 import com.example.travelnet.travelnet.R;
 import com.example.travelnet.travelnet.view.fragments.AttractionsFragment;
@@ -19,34 +20,32 @@ import com.example.travelnet.travelnet.view.fragments.TravelsFragment;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import io.dflabs.lib.mvp.BaseActivity;
-import io.dflabs.lib.mvp.BasePresenter;
 
-import static java.security.AccessController.getContext;
-
-public class MainActivity extends BaseActivity implements
+public class MainActivity extends AppCompatActivity implements
         NavigationView.OnNavigationItemSelectedListener{
 
     @Bind(R.id.act_main_nav_view)
     NavigationView mNavigationView;
     @Bind(R.id.act_main_drawer_layout)
     DrawerLayout mDrawerLayout;
-    private ActionBarDrawerToggle drawerToggle;
+    @Bind(R.id.toolbar_container)
+    FrameLayout mToolbarContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHomeAsUpEnabled(false);
-        setToolbarEnabled(false);
+        //setHomeAsUpEnabled(false);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-
         mNavigationView.setNavigationItemSelectedListener(this);
-    }
-
-    @Override
-    protected BasePresenter getPresenter() {
-        return null;
+        ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this,
+                mDrawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        mDrawerLayout.setDrawerListener(drawerToggle);
+        drawerToggle.syncState();
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
+        }
+        selectItem(R.id.action_hotels, getString(R.string.menu_title_hotels));
     }
 
     @Override
@@ -84,5 +83,9 @@ public class MainActivity extends BaseActivity implements
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.act_main_content, fragment).commit();
         mDrawerLayout.closeDrawer(GravityCompat.START);
+    }
+
+    public FrameLayout getToolbarContainer() {
+        return mToolbarContainer;
     }
 }

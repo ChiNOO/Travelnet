@@ -4,9 +4,10 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-    <com.squareup.timessquare.CalendarPickerView
-        android:id="@+id/fr_calendar_view"
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="Vuelos"/>
 </LinearLayout>

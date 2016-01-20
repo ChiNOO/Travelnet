@@ -1,5 +1,6 @@
 package com.example.travelnet.travelnet.view.fragments;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -11,15 +12,14 @@ import com.example.travelnet.travelnet.presenter.callbacks.FlightsCallbak;
 import com.example.travelnet.travelnet.presenter.implementations.FlightsPresenter;
 
 import butterknife.ButterKnife;
-import io.dflabs.lib.mvp.BaseFragment;
 import io.dflabs.lib.mvp.BasePresenter;
 
 /**
  * Created by Christian on 12/01/2016.
  * Travelnet - Christian
  */
-public class FlightsFragment extends BaseFragment implements FlightsCallbak {
-    private FlightsPresenter mFlightPresenter;
+public class FlightsFragment extends MainNavigationFragment implements FlightsCallbak {
+    FlightsPresenter mFlightPresenter;
 
     @Nullable
     @Override
@@ -31,6 +31,14 @@ public class FlightsFragment extends BaseFragment implements FlightsCallbak {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
+    }
+
+    @SuppressLint("InflateParams")
+    @Override
+    protected View getToolbarView() {
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.toolbar_items_flights, null);
+        ButterKnife.bind(this, view);
+        return view;
     }
 
     @Override
