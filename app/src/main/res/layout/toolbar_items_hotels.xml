@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingBottom="10dp">
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/toolbar_hotels_txt_location"
@@ -19,6 +20,8 @@
             android:layout_height="wrap_content"
             android:hint="@string/toolbar_hotels_location"
             android:inputType="text"
+            android:drawableLeft="@drawable/ic_gps"
+            android:drawablePadding="15dp"
             android:textColor="@android:color/white"
             tools:text="Cancún"/>
 
@@ -45,6 +48,8 @@
                 android:layout_height="wrap_content"
                 android:focusableInTouchMode="false"
                 android:hint="@string/toolbar_hotels_dateIni"
+                android:drawableLeft="@drawable/ic_calendar"
+                android:drawablePadding="15dp"
                 android:inputType="date"
                 android:textColor="@android:color/white"/>
         </android.support.design.widget.TextInputLayout>
@@ -63,10 +68,49 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:focusableInTouchMode="false"
+                android:drawableLeft="@drawable/ic_calendar"
+                android:drawablePadding="15dp"
                 android:hint="@string/toolbar_hotels_dateEnd"
                 android:inputType="date"
                 android:textColor="@android:color/white"/>
         </android.support.design.widget.TextInputLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:background="@drawable/ic_uparrow"/>
+        <Spinner
+            android:id="@+id/spThemes"
+            android:layout_width="0dp"
+            android:layout_weight="0.8"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MyApp.HeaderBar.Spinner"
+            android:layout_alignParentRight="true"
+            android:textColor="@android:color/white"
+            android:entries="@array/noRooms"
+            android:spinnerMode="dropdown" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spThemes"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/textColorTitle"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"/>
     </LinearLayout>
 
 </LinearLayout>

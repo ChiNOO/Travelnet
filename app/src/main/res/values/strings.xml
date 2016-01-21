@@ -25,4 +25,13 @@
     <string name="Customized">Customized</string>
     <string name="Decorator">Decorator</string>
     <string name="RTL">RTL</string>
+
+    <string-array name="noRooms">
+        <item>1 Cuarto</item>
+        <item>2 Cuartos</item>
+        <item>3 Cuartos</item>
+        <item>4 Cuartos</item>
+        <item>5 Cuartos</item>
+    </string-array>
+
 </resources>

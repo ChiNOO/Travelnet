@@ -8,11 +8,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.travelnet.travelnet.R;
 import com.example.travelnet.travelnet.library.events.EventDateSelected;
 import com.example.travelnet.travelnet.presenter.callbacks.HotelsCallback;
 import com.example.travelnet.travelnet.presenter.implementations.HotelsPresenter;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -25,6 +30,8 @@ import io.dflabs.lib.mvp.BasePresenter;
  * Travelnet - Christian
  */
 public class HotelsFragment extends MainNavigationFragment implements HotelsCallback {
+    private Date mDateIni, mDateEnd;
+
     public static HotelsFragment newInstance() {
         return new HotelsFragment();
     }
@@ -58,10 +65,39 @@ public class HotelsFragment extends MainNavigationFragment implements HotelsCall
 
     @Subscribe
     public void onDateSelectedEvent(EventDateSelected event) {
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         if (focus == true){
-            mEditTextDateIni.setText(event.date);
+            if(!mEditTextDateEnd.getText().toString().matches("")){
+                try {
+                    mDateIni = format.parse(mEditTextDateEnd.getText().toString());
+                    mDateEnd = format.parse(event.date);
+                }catch (ParseException e){
+                    e.printStackTrace();
+                }
+                if (mDateEnd.compareTo(mDateIni) > 0){
+                    Toast.makeText(getContext(), "La fecha de entrada debe ser inferior.", Toast.LENGTH_SHORT).show();
+                }else{
+                    mEditTextDateIni.setText(event.date);
+                }
+            }else{
+                mEditTextDateIni.setText(event.date);
+            }
         }else{
-            mEditTextDateEnd.setText(event.date);
+            if(!mEditTextDateIni.getText().toString().matches("")){
+                try {
+                    mDateIni = format.parse(mEditTextDateIni.getText().toString());
+                    mDateEnd = format.parse(event.date);
+                }catch (ParseException e){
+                    e.printStackTrace();
+                }
+                if (mDateEnd.compareTo(mDateIni) < 0){
+                    Toast.makeText(getContext(), "La fecha de salida debe ser posterior.", Toast.LENGTH_SHORT).show();
+                }else{
+                    mEditTextDateEnd.setText(event.date);
+                }
+            }else{
+                mEditTextDateEnd.setText(event.date);
+            }
         }
 
     }
