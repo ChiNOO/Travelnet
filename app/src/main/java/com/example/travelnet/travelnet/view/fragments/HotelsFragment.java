@@ -29,10 +29,13 @@ public class HotelsFragment extends MainNavigationFragment implements HotelsCall
         return new HotelsFragment();
     }
 
+    private boolean focus = true;
     HotelsPresenter mHotelsPresenter;
 
     @Bind(R.id.toolbar_hotels_date_ini_text)
-    EditText editTextDateIni;
+    EditText mEditTextDateIni;
+    @Bind(R.id.toolbar_hotels_date_end_text)
+    EditText mEditTextDateEnd;
 
     @Nullable
     @Override
@@ -55,11 +58,27 @@ public class HotelsFragment extends MainNavigationFragment implements HotelsCall
 
     @Subscribe
     public void onDateSelectedEvent(EventDateSelected event) {
-        editTextDateIni.setText(event.date);
+        if (focus == true){
+            mEditTextDateIni.setText(event.date);
+        }else{
+            mEditTextDateEnd.setText(event.date);
+        }
+
     }
 
     @OnClick(R.id.toolbar_hotels_date_ini_text)
-    public void onClick() {
+    public void onClickDateIni() {
+        focus = true;
+        Fragment fragment;
+        fragment = CalendarFragment.newInstance();
+        getChildFragmentManager().beginTransaction()
+                .replace(R.id.fragment_hotels_fr, fragment).commit();
+
+    }
+
+    @OnClick(R.id.toolbar_hotels_date_end_text)
+    public void onClickDateEnd() {
+        focus = false;
         Fragment fragment;
         fragment = CalendarFragment.newInstance();
         getChildFragmentManager().beginTransaction()

@@ -59,9 +59,10 @@
             android:paddingRight="10dp">
 
             <EditText
-                android:id="@+id/toolbar_hotels_dateEnd_text"
+                android:id="@+id/toolbar_hotels_date_end_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:focusableInTouchMode="false"
                 android:hint="@string/toolbar_hotels_dateEnd"
                 android:inputType="date"
                 android:textColor="@android:color/white"/>
