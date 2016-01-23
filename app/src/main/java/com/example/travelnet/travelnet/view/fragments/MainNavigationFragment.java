@@ -9,10 +9,6 @@ import com.example.travelnet.travelnet.view.activities.MainActivity;
 
 import butterknife.ButterKnife;
 
-/**
- * Created by Daniel García Alvarado on 1/19/16.
- * Travelnet - danielgarcia
- */
 public abstract class MainNavigationFragment extends EventBusFragment {
 
     private FrameLayout mToolbarContainer;
