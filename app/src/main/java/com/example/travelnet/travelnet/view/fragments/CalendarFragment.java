@@ -23,7 +23,7 @@ import butterknife.ButterKnife;
 import io.dflabs.lib.mvp.BasePresenter;
 
 /**
- * Created by cvazquez on 18/01/2016.
+ * Created by christian vargas on 18/01/2016.
  */
 public class CalendarFragment extends EventBusFragment implements CalendarCallback, CalendarPickerView.OnDateSelectedListener {
 

@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
         }
-        selectItem(R.id.action_hotels, getString(R.string.menu_title_hotels));
+        //selectItem(R.id.action_hotels, getString(R.string.menu_title_hotels));
     }
 
     @Override
