@@ -1,6 +1,7 @@
 package com.example.travelnet.travelnet.view.fragments;
 
 import android.annotation.SuppressLint;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.travelnet.travelnet.R;
@@ -22,6 +24,8 @@ import java.util.Date;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnItemSelected;
+import butterknife.OnTouch;
 import de.greenrobot.event.Subscribe;
 import io.dflabs.lib.mvp.BasePresenter;
 
@@ -43,6 +47,10 @@ public class HotelsFragment extends MainNavigationFragment implements HotelsCall
     EditText mEditTextDateIni;
     @Bind(R.id.toolbar_hotels_date_end_text)
     EditText mEditTextDateEnd;
+    @Bind(R.id.toolbar_hotels_location)
+    EditText mEditTextLocation;
+    @Bind(R.id.toolbar_hotels_spinner)
+    Spinner mSpinnerRooms;
 
     @Nullable
     @Override
@@ -119,7 +127,14 @@ public class HotelsFragment extends MainNavigationFragment implements HotelsCall
         fragment = CalendarFragment.newInstance();
         getChildFragmentManager().beginTransaction()
                 .replace(R.id.fragment_hotels_fr, fragment).commit();
+    }
 
+    @OnTouch(R.id.toolbar_hotels_location) boolean onTouch() {
+        Fragment fragment;
+        fragment = LocationFragment.newInstance();
+        getChildFragmentManager().beginTransaction()
+                .replace(R.id.fragment_hotels_fr, fragment).commit();
+        return false;
     }
 
     @Override
@@ -127,4 +142,15 @@ public class HotelsFragment extends MainNavigationFragment implements HotelsCall
         return mHotelsPresenter = new HotelsPresenter(getContext(), this);
     }
 
+    @OnItemSelected(R.id.toolbar_hotels_spinner)
+    void onItemSelected(int position) {
+        if (position > 0){
+            Toast.makeText(getContext(), "Selected position " + position + "!", Toast.LENGTH_SHORT).show();
+            Fragment fragment;
+            fragment = RoomsFragment.newInstance(position);
+            getChildFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_hotels_fr, fragment).commit();
+        }
+
+    }
 }

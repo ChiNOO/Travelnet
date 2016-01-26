@@ -16,6 +16,7 @@
         android:paddingRight="8dp">
 
         <EditText
+            android:id="@+id/toolbar_hotels_location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/toolbar_hotels_location"
@@ -81,7 +82,7 @@
         android:layout_height="wrap_content"
         android:baselineAligned="false"
         android:orientation="horizontal"
-        android:layout_marginTop="8dp">
+        android:layout_marginTop="12dp">
 
         <ImageView
             android:layout_width="0dp"
@@ -89,7 +90,7 @@
             android:layout_weight="0.1"
             android:background="@drawable/ic_uparrow"/>
         <Spinner
-            android:id="@+id/spThemes"
+            android:id="@+id/toolbar_hotels_spinner"
             android:layout_width="0dp"
             android:layout_weight="0.8"
             android:layout_height="wrap_content"
