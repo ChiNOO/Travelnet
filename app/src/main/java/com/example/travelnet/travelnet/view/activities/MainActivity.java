@@ -1,5 +1,7 @@
 package com.example.travelnet.travelnet.view.activities;
 
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -9,6 +11,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.example.travelnet.travelnet.R;
 import com.example.travelnet.travelnet.view.fragments.AttractionsFragment;
@@ -20,10 +24,13 @@ import com.example.travelnet.travelnet.view.fragments.TravelsFragment;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity implements
         NavigationView.OnNavigationItemSelectedListener{
 
+    @Bind(R.id.toolbar)
+    android.support.v7.widget.Toolbar mToolbar;
     @Bind(R.id.act_main_nav_view)
     NavigationView mNavigationView;
     @Bind(R.id.act_main_drawer_layout)
@@ -31,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements
     @Bind(R.id.toolbar_container)
     FrameLayout mToolbarContainer;
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,14 +46,19 @@ public class MainActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         mNavigationView.setNavigationItemSelectedListener(this);
-        ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this,
-                mDrawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        mDrawerLayout.setDrawerListener(drawerToggle);
-        drawerToggle.syncState();
+
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
         }
-        //selectItem(R.id.action_hotels, getString(R.string.menu_title_hotels));
+        mToolbar.setNavigationIcon(R.drawable.ic_menu);
+    }
+
+    @OnClick(R.id.toolbar)
+    public void onClickToolbar(){
+        ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this,
+                mDrawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        mDrawerLayout.openDrawer(mNavigationView);
+        drawerToggle.syncState();
     }
 
     @Override

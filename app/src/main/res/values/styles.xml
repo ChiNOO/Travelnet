@@ -5,8 +5,8 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="colorControlNormal">@android:color/white</item>
+        <item name="colorAccent">#1fec00</item>
+        <item name="colorControlNormal">#0055ff</item>
     </style>
 
     <style name="TravelNet" parent="Theme.AppCompat.NoActionBar" >
@@ -19,7 +19,7 @@
         <item name="android:dropDownSelector">?android:selectableItemBackground</item>
         <item name="android:divider">@color/foreground_material_dark</item>
         <item name="android:overlapAnchor" tools:targetApi="lollipop">true</item>
-        <item name="android:textColor">#FFF</item>
+        <item name="android:textColor">#ff0000</item>
     </style>
 
 </resources>

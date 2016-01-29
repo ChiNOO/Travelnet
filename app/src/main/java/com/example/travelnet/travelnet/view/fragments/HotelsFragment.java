@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.example.travelnet.travelnet.R;
 import com.example.travelnet.travelnet.library.events.EventDateSelected;
@@ -56,6 +57,7 @@ public class HotelsFragment extends MainNavigationFragment implements HotelsCall
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_hotels, container, false);
+
     }
 
     @Override
