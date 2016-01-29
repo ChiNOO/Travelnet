@@ -53,7 +53,7 @@
                 android:drawableLeft="@drawable/ic_calendar"
                 android:drawablePadding="8dp"
                 android:inputType="date"
-                android:textColor="@android:color/secondary_text_dark"/>
+                app:hintTextAppearance="@style/TextAppearance.AppCompat"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -74,7 +74,7 @@
                 android:drawablePadding="8dp"
                 android:hint="@string/toolbar_hotels_dateEnd"
                 android:inputType="date"
-                android:textColor="@android:color/white"/>
+                app:hintTextAppearance="@style/TextAppearance.AppCompat"/>
         </android.support.design.widget.TextInputLayout>
     </LinearLayout>
 
@@ -97,7 +97,6 @@
             android:layout_height="wrap_content"
             style="@style/Widget.MyApp.HeaderBar.Spinner"
             android:layout_alignParentRight="true"
-            android:textColor="@android:color/white"
             android:entries="@array/noRooms"
             android:spinnerMode="dropdown" />
     </LinearLayout>

@@ -9,10 +9,10 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.example.travelnet.travelnet.R;
 import com.example.travelnet.travelnet.view.fragments.AttractionsFragment;
@@ -50,15 +50,24 @@ public class MainActivity extends AppCompatActivity implements
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
         }
+
+        ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this,
+                mDrawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerToggle.setDrawerIndicatorEnabled(false);
+        mDrawerLayout.setDrawerListener(drawerToggle);
+        drawerToggle.syncState();
         mToolbar.setNavigationIcon(R.drawable.ic_menu);
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDrawerLayout.openDrawer(Gravity.LEFT);
+            }
+        });
+
     }
 
     @OnClick(R.id.toolbar)
     public void onClickToolbar(){
-        ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this,
-                mDrawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        mDrawerLayout.openDrawer(mNavigationView);
-        drawerToggle.syncState();
     }
 
     @Override

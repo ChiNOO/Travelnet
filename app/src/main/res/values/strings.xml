@@ -26,6 +26,7 @@
     <string name="Decorator">Decorator</string>
     <string name="RTL">RTL</string>
     <string name="noRoom">NoRoom</string>
+    <string name="action_search">Buscar</string>
 
     <string-array name="noRooms">
         <item>No. Cuartos</item>
