@@ -1,6 +1,7 @@
 package com.example.travelnet.travelnet.view.fragments;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -114,6 +116,10 @@ public class HotelsFragment extends MainNavigationFragment implements HotelsCall
 
     @OnClick(R.id.toolbar_hotels_date_ini_text)
     public void onClickDateIni() {
+        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(mEditTextDateIni.getWindowToken(), 0);
+
+        mEditTextDateIni.setFocusable(true);
         focus = true;
         Fragment fragment;
         fragment = CalendarFragment.newInstance();
@@ -124,6 +130,10 @@ public class HotelsFragment extends MainNavigationFragment implements HotelsCall
 
     @OnClick(R.id.toolbar_hotels_date_end_text)
     public void onClickDateEnd() {
+        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(mEditTextDateEnd.getWindowToken(), 0);
+
+        mEditTextDateEnd.setFocusable(true);
         focus = false;
         Fragment fragment;
         fragment = CalendarFragment.newInstance();
