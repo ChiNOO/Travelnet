@@ -2,7 +2,6 @@ package com.example.travelnet.travelnet.view.fragments;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,10 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.example.travelnet.travelnet.R;
 import com.example.travelnet.travelnet.library.events.EventDateSelected;
@@ -47,9 +46,9 @@ public class HotelsFragment extends MainNavigationFragment implements HotelsCall
     HotelsPresenter mHotelsPresenter;
 
     @Bind(R.id.toolbar_hotels_date_ini_text)
-    EditText mEditTextDateIni;
+    Button mEditButtonDateIni;
     @Bind(R.id.toolbar_hotels_date_end_text)
-    EditText mEditTextDateEnd;
+    Button mEditButtonDateEnd;
     @Bind(R.id.toolbar_hotels_location)
     EditText mEditTextLocation;
     @Bind(R.id.toolbar_hotels_spinner)
@@ -79,9 +78,9 @@ public class HotelsFragment extends MainNavigationFragment implements HotelsCall
     public void onDateSelectedEvent(EventDateSelected event) {
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         if (focus == true){
-            if(!mEditTextDateEnd.getText().toString().matches("")){
+            if(!mEditButtonDateEnd.getText().toString().matches("")){
                 try {
-                    mDateIni = format.parse(mEditTextDateEnd.getText().toString());
+                    mDateIni = format.parse(mEditButtonDateEnd.getText().toString());
                     mDateEnd = format.parse(event.date);
                 }catch (ParseException e){
                     e.printStackTrace();
@@ -89,15 +88,15 @@ public class HotelsFragment extends MainNavigationFragment implements HotelsCall
                 if (mDateEnd.compareTo(mDateIni) > 0){
                     Toast.makeText(getContext(), "La fecha de entrada debe ser inferior.", Toast.LENGTH_SHORT).show();
                 }else{
-                    mEditTextDateIni.setText(event.date);
+                    mEditButtonDateIni.setText(event.date);
                 }
             }else{
-                mEditTextDateIni.setText(event.date);
+                mEditButtonDateIni.setText(event.date);
             }
         }else{
-            if(!mEditTextDateIni.getText().toString().matches("")){
+            if(!mEditButtonDateIni.getText().toString().matches("")){
                 try {
-                    mDateIni = format.parse(mEditTextDateIni.getText().toString());
+                    mDateIni = format.parse(mEditButtonDateIni.getText().toString());
                     mDateEnd = format.parse(event.date);
                 }catch (ParseException e){
                     e.printStackTrace();
@@ -105,10 +104,10 @@ public class HotelsFragment extends MainNavigationFragment implements HotelsCall
                 if (mDateEnd.compareTo(mDateIni) < 0){
                     Toast.makeText(getContext(), "La fecha de salida debe ser posterior.", Toast.LENGTH_SHORT).show();
                 }else{
-                    mEditTextDateEnd.setText(event.date);
+                    mEditButtonDateEnd.setText(event.date);
                 }
             }else{
-                mEditTextDateEnd.setText(event.date);
+                mEditButtonDateEnd.setText(event.date);
             }
         }
 
@@ -116,10 +115,9 @@ public class HotelsFragment extends MainNavigationFragment implements HotelsCall
 
     @OnClick(R.id.toolbar_hotels_date_ini_text)
     public void onClickDateIni() {
-        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(mEditTextDateIni.getWindowToken(), 0);
-
-        mEditTextDateIni.setFocusable(true);
+        hideKeyboard();
+        mEditButtonDateEnd.setFocusable(false);
+        mEditButtonDateIni.setFocusable(true);
         focus = true;
         Fragment fragment;
         fragment = CalendarFragment.newInstance();
@@ -130,10 +128,9 @@ public class HotelsFragment extends MainNavigationFragment implements HotelsCall
 
     @OnClick(R.id.toolbar_hotels_date_end_text)
     public void onClickDateEnd() {
-        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(mEditTextDateEnd.getWindowToken(), 0);
-
-        mEditTextDateEnd.setFocusable(true);
+        hideKeyboard();
+        mEditButtonDateIni.setFocusable(false);
+        mEditButtonDateEnd.setFocusable(true);
         focus = false;
         Fragment fragment;
         fragment = CalendarFragment.newInstance();
@@ -154,8 +151,15 @@ public class HotelsFragment extends MainNavigationFragment implements HotelsCall
         return mHotelsPresenter = new HotelsPresenter(getContext(), this);
     }
 
+    @OnTouch(R.id.toolbar_hotels_spinner)
+    boolean onTouchSpinner() {
+        hideKeyboard();
+        return false;
+    }
+
     @OnItemSelected(R.id.toolbar_hotels_spinner)
     void onItemSelected(int position) {
+
         if (position > 0){
             Toast.makeText(getContext(), "Selected position " + position + "!", Toast.LENGTH_SHORT).show();
             Fragment fragment;
@@ -164,5 +168,10 @@ public class HotelsFragment extends MainNavigationFragment implements HotelsCall
                     .replace(R.id.fragment_hotels_fr, fragment).commit();
         }
 
+    }
+
+    public void hideKeyboard(){
+        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(mEditButtonDateEnd.getWindowToken(), 0);
     }
 }

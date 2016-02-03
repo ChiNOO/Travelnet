@@ -5,15 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingBottom="8dp">
+    android:paddingBottom="12dp">
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/toolbar_hotels_txt_location"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp">
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp">
 
         <EditText
             android:id="@+id/toolbar_hotels_location"
@@ -43,17 +43,22 @@
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             app:hintTextAppearance="@style/TextAppearance.AppCompat">
-
-            <EditText
+            <Button
                 android:id="@+id/toolbar_hotels_date_ini_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:focusableInTouchMode="false"
-                android:hint="@string/toolbar_hotels_dateIni"
                 android:drawableLeft="@drawable/ic_calendar"
-                android:drawablePadding="8dp"
-                android:inputType="date"
-                app:hintTextAppearance="@style/TextAppearance.AppCompat"/>
+                android:background="?android:attr/selectableItemBackground"
+                android:hint="@string/toolbar_hotels_dateIni"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="8dp"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/textColorTitle"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="-12dp"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -62,19 +67,25 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_weight="0.5"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp">
-
-            <EditText
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp">
+            <Button
                 android:id="@+id/toolbar_hotels_date_end_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:focusableInTouchMode="false"
                 android:drawableLeft="@drawable/ic_calendar"
-                android:drawablePadding="8dp"
-                android:hint="@string/toolbar_hotels_dateEnd"
-                android:inputType="date"
-                app:hintTextAppearance="@style/TextAppearance.AppCompat"/>
+                android:background="?android:attr/selectableItemBackground"
+                android:hint="@string/toolbar_hotels_dateIni"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="8dp"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/textColorTitle"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="-12dp"/>
+
         </android.support.design.widget.TextInputLayout>
     </LinearLayout>
 
@@ -83,7 +94,9 @@
         android:layout_height="wrap_content"
         android:baselineAligned="false"
         android:orientation="horizontal"
-        android:layout_marginTop="12dp">
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp">
 
         <ImageView
             android:layout_width="0dp"

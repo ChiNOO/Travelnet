@@ -1,6 +1,7 @@
 package com.example.travelnet.travelnet.view.activities;
 
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -12,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
 
 import com.example.travelnet.travelnet.R;
@@ -78,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements
 
     private void selectItem(int itemId, CharSequence title) {
         Fragment fragment = null;
+        hideKeyboard();
         switch (itemId) {
             case R.id.action_hotels:
                 fragment = HotelsFragment.newInstance();
@@ -105,6 +108,11 @@ public class MainActivity extends AppCompatActivity implements
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.act_main_content, fragment).commit();
         mDrawerLayout.closeDrawer(GravityCompat.START);
+    }
+
+    private void hideKeyboard() {
+        InputMethodManager imm = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(mNavigationView.getWindowToken(), 0);
     }
 
     public FrameLayout getToolbarContainer() {

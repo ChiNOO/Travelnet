@@ -1,5 +1,6 @@
 package com.example.travelnet.travelnet.view.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -28,7 +29,7 @@ public class RoomsFragment extends BaseFragment implements RoomsCallback {
     private int position;
     TextView tv;
     @Bind(R.id.fragment_rooms_layout)
-    RelativeLayout mLinearLayout;
+    LinearLayout mLinearLayout;
 
     @Nullable
     @Override
@@ -41,9 +42,46 @@ public class RoomsFragment extends BaseFragment implements RoomsCallback {
         super.onViewCreated(view, savedInstanceState);
         position =  getArguments().getInt("position", 0);
         ButterKnife.bind(this, view);
-        for(int i = 1; i <= position; i++) {
+        LinearLayout mRelativeLayout = (LinearLayout)getView().findViewById(R.id.fr_rooms_rl_rooms);
+        //LayoutInflater  mRoomLayout = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
+
+
+
+        for(int i = 1; i <= position; i++){
+
+            LinearLayout placeHolder = (LinearLayout)getView().findViewById(R.id.fr_rooms_rl_rooms);
+
+            RelativeLayout mRoom = (RelativeLayout)getView().findViewById(R.id.room);
+
+            mRoom.setId(view.generateViewId());
+            placeHolder.addView(mRoom);
+
+            //addRoom();
+           // LayoutInflater  mRoomLayout = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            //mRelativeLayout.addView(mRelativeLayout);
+            //RelativeLayout placeHolder = (RelativeLayout)getView().findViewById(R.id.fr_rooms_rl_rooms);
+            //final LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            //mRoom = (RelativeLayout) inflater.inflate(R.layout.room, null);
+            //mRoom.setId(view.generateViewId());
+
+
+           placeHolder.addView(mRoom);
+              getActivity().getLayoutInflater().inflate(R.layout.room, placeHolder);
+            /*LinearLayout mRelativeLayout = (LinearLayout) getView().findViewById(R.id.fr_rooms_rl_rooms);
+            Button mButton = new Button(getContext());
+            mButton.setText("hola");
+            mButton.setId(view.generateViewId());
+            mRelativeLayout.addView(mButton);
+        */
         }
+    }
+
+    private void addRoom() {
+     //   RelativeLayout mRelativeLayout = (RelativeLayout) getView().findViewById(R.id.fr_rooms_rl_rooms);
+        Button mButton = new Button(getContext());
+        mButton.setText("hola");
+       // mButton.setId(view.generateViewId());
     }
 
     @Override
