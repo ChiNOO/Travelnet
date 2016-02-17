@@ -27,6 +27,9 @@
     <string name="RTL">RTL</string>
     <string name="noRoom">NoRoom</string>
     <string name="action_search">Buscar</string>
+    <string name="adults">Adultos</string>
+    <string name="kids">Niños</string>
+    <string name="one">1</string>
 
     <string-array name="noRooms">
         <item>No. Cuartos</item>

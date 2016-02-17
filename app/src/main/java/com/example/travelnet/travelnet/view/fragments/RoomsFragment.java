@@ -4,10 +4,12 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -16,6 +18,7 @@ import com.example.travelnet.travelnet.R;
 import com.example.travelnet.travelnet.presenter.callbacks.RoomsCallback;
 import com.example.travelnet.travelnet.presenter.implementations.RoomsPresenter;
 
+import at.markushi.ui.CircleButton;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import io.dflabs.lib.mvp.BaseFragment;
@@ -42,46 +45,70 @@ public class RoomsFragment extends BaseFragment implements RoomsCallback {
         super.onViewCreated(view, savedInstanceState);
         position =  getArguments().getInt("position", 0);
         ButterKnife.bind(this, view);
-        LinearLayout mRelativeLayout = (LinearLayout)getView().findViewById(R.id.fr_rooms_rl_rooms);
-        //LayoutInflater  mRoomLayout = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-
-
-
+        LinearLayout placeHolder = (LinearLayout)getView().findViewById(R.id.fr_rooms_rl_rooms);
         for(int i = 1; i <= position; i++){
+            LinearLayout mRoom = (LinearLayout)View.inflate(getContext(), R.layout.room, null);
+            TextView txt = (TextView) mRoom.findViewById(R.id.txt);
+            txt.setText("Habitación " + i);
 
-            LinearLayout placeHolder = (LinearLayout)getView().findViewById(R.id.fr_rooms_rl_rooms);
+            CircleButton mCbuttonAddA = (CircleButton)mRoom.findViewById(R.id.roomAddAdult);
+            mCbuttonAddA.setId(i + 1);
 
-            RelativeLayout mRoom = (RelativeLayout)getView().findViewById(R.id.room);
+            CircleButton mCbuttonLessA = (CircleButton)mRoom.findViewById(R.id.roomLessAdult);
+            mCbuttonLessA.setId(i + 1);
 
-            mRoom.setId(view.generateViewId());
+            CircleButton mCbuttonAddK = (CircleButton)mRoom.findViewById(R.id.roomAddKids);
+            mCbuttonAddK.setId(i + 1);
+
+            CircleButton mCbuttonLessK = (CircleButton)mRoom.findViewById(R.id.roomLessKids);
+            mCbuttonLessK.setId(i + 1);
+
+            final TextView mTextViewNAdts = (TextView)mRoom.findViewById(R.id.noAdults);
+            mTextViewNAdts.setId(i + 1);
+            final TextView mTextViewNKids = (TextView)mRoom.findViewById(R.id.noKids);
+            mTextViewNKids.setId(i + 1);
+            mCbuttonAddA.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    int noA = Integer.parseInt((String) mTextViewNAdts.getText());
+                    if (noA < 5) {
+                        noA += 1;
+                        mTextViewNAdts.setText(String.valueOf(noA));
+                    }
+
+                }
+            });
+            mCbuttonLessA.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    int noA = Integer.parseInt((String) mTextViewNAdts.getText());
+                    if (noA > 1){
+                        noA -= 1;
+                        mTextViewNAdts.setText(String.valueOf(noA));
+                    }
+
+                }
+            });
+            mCbuttonAddK.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    int noA = Integer.parseInt((String) mTextViewNKids.getText());
+                    if (noA < 5) {
+                        noA += 1;
+                        mTextViewNKids.setText(String.valueOf(noA));
+                    }
+
+                }
+            });
+            mCbuttonLessK.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    int noA = Integer.parseInt((String) mTextViewNKids.getText());
+                    if (noA > 1){
+                        noA -= 1;
+                        mTextViewNKids.setText(String.valueOf(noA));
+                    }
+
+                }
+            });
             placeHolder.addView(mRoom);
-
-            //addRoom();
-           // LayoutInflater  mRoomLayout = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            //mRelativeLayout.addView(mRelativeLayout);
-            //RelativeLayout placeHolder = (RelativeLayout)getView().findViewById(R.id.fr_rooms_rl_rooms);
-            //final LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            //mRoom = (RelativeLayout) inflater.inflate(R.layout.room, null);
-            //mRoom.setId(view.generateViewId());
-
-
-           placeHolder.addView(mRoom);
-              getActivity().getLayoutInflater().inflate(R.layout.room, placeHolder);
-            /*LinearLayout mRelativeLayout = (LinearLayout) getView().findViewById(R.id.fr_rooms_rl_rooms);
-            Button mButton = new Button(getContext());
-            mButton.setText("hola");
-            mButton.setId(view.generateViewId());
-            mRelativeLayout.addView(mButton);
-        */
         }
-    }
-
-    private void addRoom() {
-     //   RelativeLayout mRelativeLayout = (RelativeLayout) getView().findViewById(R.id.fr_rooms_rl_rooms);
-        Button mButton = new Button(getContext());
-        mButton.setText("hola");
-       // mButton.setId(view.generateViewId());
     }
 
     @Override

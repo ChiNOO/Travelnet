@@ -34,4 +34,5 @@ dependencies {
     }
     compile 'com.squareup:android-times-square:1.6.4@aar'
     compile 'de.greenrobot:eventbus:3.0.0-beta1'
+    compile 'com.github.markushi:circlebutton:1.1'
 }

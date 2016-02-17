@@ -151,17 +151,9 @@ public class HotelsFragment extends MainNavigationFragment implements HotelsCall
         return mHotelsPresenter = new HotelsPresenter(getContext(), this);
     }
 
-    @OnTouch(R.id.toolbar_hotels_spinner)
-    boolean onTouchSpinner() {
-        hideKeyboard();
-        return false;
-    }
-
     @OnItemSelected(R.id.toolbar_hotels_spinner)
     void onItemSelected(int position) {
-
         if (position > 0){
-            Toast.makeText(getContext(), "Selected position " + position + "!", Toast.LENGTH_SHORT).show();
             Fragment fragment;
             fragment = RoomsFragment.newInstance(position);
             getChildFragmentManager().beginTransaction()
